@@ -8,7 +8,7 @@ function SectionCaraKerja() {
   const steps = [
     { title: 'Daftar / Masuk', desc: 'Buat akun dalam satu menit. Punya kode referral teman? Masukkan saat daftar.' },
     { title: 'Deposit IDR', desc: 'Isi saldo rupiah Anda melalui deposit simulasi. Dana langsung tersedia di Beranda.' },
-    { title: 'Pilih Paket', desc: 'Tiga paket dengan rentang profit/cashback dan durasi 150 hari.' },
+    { title: 'Pilih Paket', desc: 'Tiga paket — ETH, BTC, GOLD — profit harian dengan durasi 150 hari.' },
     { title: 'Investasi', desc: 'Tentukan nominal, periksa ringkasan, lalu konfirmasi. Saldo otomatis berkurang.' },
     { title: 'Cairkan Hasil Harian', desc: 'Hasil harian masuk ke saldo IDR dan bisa ditarik kapan saja.' },
     { title: 'Klaim Akhir', desc: 'Di hari ke-150, modal kembali penuh beserta sisa hasil ke saldo Anda.' },
@@ -39,7 +39,7 @@ function SectionPaket() {
       <h2 id="paket" className="section-title">Paket Investasi</h2>
       <div className="hairline mt-4 max-w-xs" />
       <p className="mt-4 max-w-2xl text-sm text-muted">
-        Rentang profit/cashback per periode 150 hari. Pilih sesuai profil risiko Anda.
+        Profit/cashback per hari, durasi 150 hari. Pilih sesuai profil dan modal Anda.
       </p>
       <div className="mt-8 grid gap-4 md:grid-cols-3">
         {PACKAGES.map((p, i) => (
@@ -55,7 +55,7 @@ function SectionPaket() {
             <p className="text-gold-gradient mt-3 font-display text-4xl font-bold">
               {p.rateRange[0]}%–{p.rateRange[1]}%
             </p>
-            <p className="mt-1 text-xs uppercase tracking-wider text-muted">Profit / Cashback</p>
+            <p className="mt-1 text-xs uppercase tracking-wider text-muted">Profit / Cashback per Hari</p>
             <p className="mt-4 text-sm text-muted">{p.description}</p>
             <dl className="mt-4 space-y-1 text-sm">
               <div className="flex justify-between border-t border-line pt-2">
@@ -125,8 +125,8 @@ export default function Landing() {
               <div className="mt-5 space-y-3">
                 <div className="rounded-xl bg-surface2 p-3">
                   <div className="flex justify-between text-sm">
-                    <span className="text-muted">Paket I — Aktif</span>
-                    <span className="text-primary">2%–7% / 150 hari</span>
+                    <span className="text-muted">Paket ETH — Aktif</span>
+                    <span className="text-primary">2%–7% per hari</span>
                   </div>
                   <div className="mt-2 h-2 overflow-hidden rounded-full bg-bg">
                     <div className="anim-grow-x h-full w-2/3 rounded-full" style={{ background: 'linear-gradient(90deg,#9c7c22,#d4af37,#f2dc8f)' }} />
@@ -134,8 +134,8 @@ export default function Landing() {
                 </div>
                 <div className="rounded-xl bg-surface2 p-3">
                   <div className="flex justify-between text-sm">
-                    <span className="text-muted">Paket III — Aktif</span>
-                    <span className="text-primary">2%–4% / 150 hari</span>
+                    <span className="text-muted">Paket GOLD — Aktif</span>
+                    <span className="text-primary">2%–4% per hari</span>
                   </div>
                   <div className="mt-2 h-2 overflow-hidden rounded-full bg-bg">
                     <div className="anim-grow-x h-full w-1/3 rounded-full" style={{ background: 'linear-gradient(90deg,#9c7c22,#d4af37,#f2dc8f)' }} />

@@ -11,7 +11,7 @@
 export interface PackageConfig {
   id: 'paket1' | 'paket2' | 'paket3'
   name: string
-  /** Rentang profit/cashback dalam persen (bukan nilai pasti) */
+  /** Rentang profit/cashback PER HARI dalam persen (bukan nilai pasti) */
   rateRange: [number, number]
   /** Durasi investasi dalam hari */
   durationDays: number
@@ -36,30 +36,30 @@ export const DURATION_DAYS = 150
 export const PACKAGES: PackageConfig[] = [
   {
     id: 'paket1',
-    name: 'Paket I',
+    name: 'Paket ETH',
     rateRange: [2, 7],
     durationDays: DURATION_DAYS,
-    description: 'Rentang hasil paling lebar untuk modal yang ingin tumbuh agresif.',
-    minAmount: 100_000,
-    maxAmount: 50_000_000,
+    description: 'Rentang hasil harian paling lebar untuk modal yang ingin tumbuh agresif.',
+    minAmount: 300_000,
+    maxAmount: 10_000_000,
   },
   {
     id: 'paket2',
-    name: 'Paket II',
+    name: 'Paket BTC',
     rateRange: [2, 5],
     durationDays: DURATION_DAYS,
-    description: 'Keseimbangan antara potensi hasil dan stabilitas.',
-    minAmount: 100_000,
+    description: 'Keseimbangan antara potensi hasil harian dan stabilitas.',
+    minAmount: 1_000_000,
     maxAmount: 50_000_000,
   },
   {
     id: 'paket3',
-    name: 'Paket III',
+    name: 'Paket GOLD',
     rateRange: [2, 4],
     durationDays: DURATION_DAYS,
-    description: 'Pilihan konservatif dengan rentang hasil paling stabil.',
-    minAmount: 100_000,
-    maxAmount: 50_000_000,
+    description: 'Pilihan konservatif dengan rentang hasil harian paling stabil.',
+    minAmount: 1_000_000,
+    maxAmount: 100_000_000,
   },
 ]
 

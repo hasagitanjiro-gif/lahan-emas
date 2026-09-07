@@ -93,8 +93,11 @@ export default function Beranda() {
   const siapCairPerPaket = aktif.map((inv) => {
     const hariBerjalan = daysBetween(inv.start_date, new Date())
     const hariTersedia = Math.max(0, Math.min(hariBerjalan, inv.duration_days) - Number(inv.profit_days_paid ?? 0))
-    const totalHasilInv = inv.total_return != null ? Number(inv.total_return) : (Number(inv.amount) * Number(inv.rate_max)) / 100
-    const perHari = totalHasilInv / inv.duration_days
+    // Rate harian: total hasil terkunci dibagi durasi; fallback = modal x rate maks% per hari
+    const perHari =
+      inv.total_return != null
+        ? Number(inv.total_return) / inv.duration_days
+        : (Number(inv.amount) * Number(inv.rate_max)) / 100
     const nominal = Math.round(perHari * hariTersedia)
     return { inv, hariTersedia, nominal, perHari }
   })
@@ -219,7 +222,7 @@ export default function Beranda() {
                     <StatusBadge status="aktif" />
                   </div>
                   <p className="mt-1 text-sm text-muted">
-                    {formatIDR(Number(inv.amount))} · {Number(inv.rate_min)}%–{Number(inv.rate_max)}%
+                    {formatIDR(Number(inv.amount))} · {Number(inv.rate_min)}%–{Number(inv.rate_max)}% per hari
                   </p>
                   <div className="mt-3">
                     <ProgressBar percent={persen} />

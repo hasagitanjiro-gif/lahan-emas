@@ -39,7 +39,7 @@ export default function Paket() {
       <div>
         <h1 className="font-display text-2xl font-bold text-ink md:text-3xl">Paket Investasi</h1>
         <p className="mt-1 text-sm text-muted">
-          Tiga paket, durasi 150 hari. Pilih yang sesuai dengan profil Anda.
+          Tiga paket — ETH, BTC, GOLD — profit per hari, durasi 150 hari. Pilih yang sesuai dengan profil Anda.
         </p>
       </div>
 
@@ -50,7 +50,7 @@ export default function Paket() {
             <p className="mt-3 font-display text-3xl font-bold text-primary">
               {Number(p.rate_min)}%–{Number(p.rate_max)}%
             </p>
-            <p className="mt-1 text-xs uppercase tracking-wide text-muted">Profit / Cashback</p>
+            <p className="mt-1 text-xs uppercase tracking-wide text-muted">Profit / Cashback per Hari</p>
             {p.description && <p className="mt-4 text-sm text-muted">{p.description}</p>}
             <dl className="mt-4 space-y-1 text-sm">
               <div className="flex justify-between border-t border-line pt-2">

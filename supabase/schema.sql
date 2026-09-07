@@ -42,11 +42,19 @@ create table if not exists public.packages (
   is_active boolean not null default true
 );
 
+-- Rate = profit/cashback PER HARI (%). Upsert agar database lama ikut diperbarui.
 insert into public.packages (id, name, rate_min, rate_max, duration_days, min_amount, max_amount, description) values
-  ('paket1', 'Paket I', 2, 7, 150, 100000, 50000000, 'Rentang hasil paling lebar untuk modal yang ingin tumbuh agresif.'),
-  ('paket2', 'Paket II', 2, 5, 150, 100000, 50000000, 'Keseimbangan antara potensi hasil dan stabilitas.'),
-  ('paket3', 'Paket III', 2, 4, 150, 100000, 50000000, 'Pilihan konservatif dengan rentang hasil paling stabil.')
-on conflict (id) do nothing;
+  ('paket1', 'Paket ETH', 2, 7, 150, 300000, 10000000, 'Rentang hasil harian paling lebar untuk modal yang ingin tumbuh agresif.'),
+  ('paket2', 'Paket BTC', 2, 5, 150, 1000000, 50000000, 'Keseimbangan antara potensi hasil harian dan stabilitas.'),
+  ('paket3', 'Paket GOLD', 2, 4, 150, 1000000, 100000000, 'Pilihan konservatif dengan rentang hasil harian paling stabil.')
+on conflict (id) do update set
+  name = excluded.name,
+  rate_min = excluded.rate_min,
+  rate_max = excluded.rate_max,
+  duration_days = excluded.duration_days,
+  min_amount = excluded.min_amount,
+  max_amount = excluded.max_amount,
+  description = excluded.description;
 
 -- --------------------------------------------------------------------------
 -- 4. INVESTMENTS
@@ -378,10 +386,11 @@ begin
          total_invested = total_invested + p_amount
    where user_id = v_user;
 
-  -- Rate ditentukan server (acak dalam rentang paket) dan dikunci saat investasi dibuat.
+  -- Rate HARIAN ditentukan server (acak dalam rentang paket) dan dikunci saat investasi dibuat.
   -- Klien tidak pernah mengirim nilai rate/saldo.
+  -- Total hasil selama durasi = modal x rate harian% x jumlah hari.
   v_rate := round((v_pkg.rate_min + random() * (v_pkg.rate_max - v_pkg.rate_min))::numeric, 2);
-  v_total_return := round(p_amount * v_rate / 100);
+  v_total_return := round(p_amount * v_rate / 100 * v_pkg.duration_days);
 
   -- Buat investasi
   insert into public.investments (user_id, package_id, package_name, amount, rate_min, rate_max,

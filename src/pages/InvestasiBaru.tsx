@@ -122,7 +122,7 @@ export default function InvestasiBaru() {
             <span className="font-semibold text-ink">{formatIDR(jumlah)}</span>
           </div>
           <div className="flex justify-between text-sm">
-            <span className="text-muted">Profit / Cashback</span>
+            <span className="text-muted">Profit / Cashback per Hari</span>
             <span className="font-semibold text-primary">
               {Number(pkg.rate_min)}%–{Number(pkg.rate_max)}%
             </span>
@@ -182,7 +182,7 @@ export default function InvestasiBaru() {
       <div>
         <h1 className="font-display text-2xl font-bold text-ink">Investasi Baru — {pkg.name}</h1>
         <p className="mt-1 text-sm text-muted">
-          Profit/cashback {Number(pkg.rate_min)}%–{Number(pkg.rate_max)}% · durasi {pkg.duration_days} hari
+          Profit/cashback {Number(pkg.rate_min)}%–{Number(pkg.rate_max)}% per hari · durasi {pkg.duration_days} hari
         </p>
       </div>
 

@@ -144,7 +144,9 @@ export default function InvestasiSaya() {
                   <div>
                     <dt className="text-muted">Rate</dt>
                     <dd className="font-semibold text-ink">
-                      {rateKunci != null ? `${rateKunci}% (terkunci)` : `${Number(inv.rate_min)}%–${Number(inv.rate_max)}%`}
+                      {rateKunci != null
+                        ? `${rateKunci}% per hari (terkunci)`
+                        : `${Number(inv.rate_min)}%–${Number(inv.rate_max)}% per hari`}
                     </dd>
                   </div>
                   <div>
@@ -164,7 +166,7 @@ export default function InvestasiSaya() {
                     <dd className="font-semibold text-primary">
                       {totalHasil != null
                         ? formatIDR(totalHasil)
-                        : `${formatIDR((Number(inv.amount) * Number(inv.rate_min)) / 100)} – ${formatIDR((Number(inv.amount) * Number(inv.rate_max)) / 100)}`}
+                        : `${formatIDR((Number(inv.amount) * Number(inv.rate_min) * inv.duration_days) / 100)} – ${formatIDR((Number(inv.amount) * Number(inv.rate_max) * inv.duration_days) / 100)}`}
                     </dd>
                   </div>
                 </dl>
