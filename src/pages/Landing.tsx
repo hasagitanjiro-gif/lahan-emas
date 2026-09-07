@@ -142,8 +142,8 @@ export default function Landing() {
                   </div>
                 </div>
                 <div className="flex items-center justify-between rounded-xl border border-primary/25 bg-primary/5 p-3">
-                  <span className="text-xs text-muted">Hasil harian siap cair</span>
-                  <span className="text-sm font-semibold text-primary">Rp840.000</span>
+                  <span className="text-xs text-muted">Hasil harian</span>
+                  <span className="text-sm font-semibold text-primary">Mengalir ke saldo</span>
                 </div>
               </div>
             </div>

@@ -102,7 +102,6 @@ export default function Beranda() {
     return { inv, hariTersedia, nominal, perHari }
   })
   const totalSiapCair = siapCairPerPaket.reduce((acc, x) => acc + x.nominal, 0)
-  const hasilPerHari = siapCairPerPaket.reduce((acc, x) => acc + x.perHari, 0)
   const totalSudahDibayar = aktif.reduce((acc, inv) => acc + Number(inv.profit_paid ?? 0), 0)
 
   return (
@@ -120,10 +119,10 @@ export default function Beranda() {
         <div className="panel-gold">
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div>
-              <p className="eyebrow">Profit Harian</p>
-              <p className="stat-value mt-1 text-gold-gradient">{formatIDR(hasilPerHari)}</p>
+              <p className="eyebrow">Hasil Siap Cair</p>
+              <p className="stat-value mt-1 text-gold-gradient">{formatIDR(totalSiapCair)}</p>
               <p className="mt-1 max-w-md text-xs text-muted">
-                Masuk otomatis ke saldo IDR Anda setiap hari dan langsung bisa ditarik lewat halaman Penarikan.
+                Hasil menumpuk otomatis setiap hari dan langsung bisa ditarik lewat halaman Penarikan.
               </p>
             </div>
             <span className="badge border-primary/40 bg-primary/10 text-primary">
@@ -135,10 +134,6 @@ export default function Beranda() {
             </span>
           </div>
           <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm">
-            <span className="text-muted">
-              Total siap cair sekarang:{' '}
-              <span className="font-semibold text-primary">{formatIDR(totalSiapCair)}</span>
-            </span>
             <span className="text-muted">
               Sudah dicairkan: <span className="font-semibold text-ink">{formatIDR(totalSudahDibayar)}</span>
             </span>
@@ -227,7 +222,7 @@ export default function Beranda() {
                   <div className="mt-3">
                     <ProgressBar percent={persen} />
                     <p className="mt-1 text-xs text-muted">
-                      Hari ke-{Math.max(0, hariBerjalan)} dari {inv.duration_days} · hasil harian siap:{' '}
+                      Hari ke-{Math.max(0, hariBerjalan)} dari {inv.duration_days} · hasil siap cair:{' '}
                       {formatIDR(siapCairPerPaket.find((s) => s.inv.id === inv.id)?.nominal ?? 0)}
                     </p>
                   </div>
